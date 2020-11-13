@@ -21,23 +21,36 @@
         <hr>
 
         <div>
-            <h4>Patients:</h4>
-            <% patientList.forEach(function(patient){ %>
-            <ol>
-                <li><b><%= patient.name %></b><button id="<% patient._id %>">DELETE</button></li>
-            </ol>
-            <% }) %>
-        </div>
+            <h3>Find a user</h3>
+            <div>
+                <h5>Search for a Staff member:</h5>
+                <form action="/search-staff" method="GET">
+                    <label for="searchStaff">Staff Name:</label>
+                    <input type="text" name="searchStaff" id="searchStaff">
 
-        <div>
-            <h4>Doctors:</h4>
-            <% doctorList.forEach(function(doctor){ %>
-                <ol>
-                    <li><b><%= doctor.name %></b> <button id="<% doctor._id %>">DELETE</button></li>
-                </ol>
-                <% }) %>
-        </div>
+                    <input type="submit" value="SEARCH">
+                </form>
+                <h5> <%=staffNotFound%> </h5>
+            </div>
+            
+            <div>
+                <h5>Search for a Patient:</h5>
+                <form action="/search-patient" method="GET">
+                    <label for="searchPatient">Patient Name:</label>
+                    <input list="patientList" name="searchPatient" id="searchPatient">
 
+                    <input type="submit" value="SEARCH">
+                </form>
+                <h5> <%=patientNotFound%> </h5>
+            </div>
+            
+        </div>
+        <hr>
+        
     </div>
+
+    <script>
+        let btn = document.querySelector("#")
+    </script>
 </body>
 </html>

@@ -5,16 +5,7 @@ const Doctor = require('./model/Doctor')
 const Patient = require('./model/Patient')
 
 router.get('/', function(req, res){
-    //couldn't figure a way to store the data returned from .find({})
-    Doctor.find({})
-        .then(function(docArr){
-            Patient.find({})
-            .then(function(patientArr){
-                res.render('home', {patientList: patientArr, doctorList: docArr})
-            })
-            .catch((err) => console.log(err))
-        })
-        .catch((err) => console.log(err))
+    res.render('home', {staffNotFound: '', patientNotFound: ''})
 })
 
 router.get('/doctor', function(req, res){
@@ -24,20 +15,30 @@ router.get('/doctor', function(req, res){
 router.get('/patient', function(req, res){
     Doctor.find({})
         .then(function(docArr){
-            console.log(docArr)
-
             res.render('patient', {docArr: docArr, patient: ''})
         })
         .catch((err) => console.log(err))
 })
 
-router.get('/findusers', function(req, res){
-    User.find({name: req.query.user})
+router.get('/search-staff', function(req, res){
+    Doctor.find({name: req.query.searchStaff})
         .then(function(userArr){
             if(userArr.length > 0){
-                res.render('users')
+                res.render('staffDisplay', {foundUser: userArr[0]})
             } else{
-                res.render('home')
+                res.render('home', {staffNotFound: 'Staff member not found', patientNotFound: ''})
+            }
+        })
+        .catch((err) => console.log(err))
+})
+
+router.get('/search-patient', function(req, res){
+    Patient.find({name: req.query.searchPatient})
+        .then(function(userArr){
+            if(userArr.length > 0){
+                res.render('display', {foundUser: userArr[0]})
+            } else{
+                res.render('home', {staffNotFound: '', patientNotFound: 'Patient not found'})
             }
         })
         .catch((err) => console.log(err))
@@ -60,17 +61,17 @@ router.post('/staff-save', function(req, res){
 router.post('/patient-save', function(req, res){
     let newPatient = new Patient({
         name: req.body.name,
-        doctor: req.body.doctor,
+        doctor: req.body.doc,
         password: req.body.password
     })
     newPatient.save()
         .then(function(savedUser){
-            res.render('patient', {docArr: [{name: 'asds'}, {name: 'dff'}], patient: `Patient added: ${savedUser.name}`})
+            res.render('patientDisplay', {patient: `Patient added: ${savedUser.name}`})
         })
         .catch((err) => console.log(err))
 })
 
-router.delete('/delete-doc/:id', function(req, res){
+router.delete('/delete-staff/:id', function(req, res){
     Doctor.findByIdAndDelete(req.params.id, (dltUser)=> console.log(dltUser))
 })
 

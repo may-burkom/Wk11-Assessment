@@ -14,17 +14,6 @@
             <p>Fill in the form below. From the list below please type enter in your Primary Care Physician.</p>
         </div>
         <hr>
-        <div id="doctorList">
-            <h3>List of Doctors in SJH:</h3>
-            <% docArr.forEach((obj)=>{ %>
-            <ul>
-                <li> 
-                    <%= obj.name %>
-                </li>
-            </ul>
-            <% }) %>
-        </div>
-        <hr>
         <div>
             <h4>Patient Sign-up:</h4> <hr>
             <div>
@@ -34,8 +23,13 @@
                         <input type="text" name="name" id="name">
                     </div>
                     <div>
-                        <label for="doctor">Primary Care Physician:</label>
-                        <input type="text" name="doctor" id="doctor">
+                        <label for="doc">Primary Care Physician:</label>
+                        <input list="doctorsSJH" name="doc" id="doc">
+                        <datalist id="doctorsSJH">
+                            <% docArr.forEach((obj)=>{ %>
+                            <option value="<%= obj.name %>">
+                            <% }) %>
+                        </datalist>
                     </div>
                     <div>
                         <label for="password">Password:</label>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Wk 11 Assessment</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Welcome to Saint Joseph's Hospital.</h1>
+        <hr>
+        <div>
+            <p>Fill in the form below.</p>
+        </div>
+
+        <div>
+            <h4>Staff Sign-up:</h4> <hr>
+            <div>
+                <form action="/staff-save" method="POST">
+                    <div>
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" id="name">
+                    </div>
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="text" name="email" id="email">
+                    </div>
+                    <div>
+                        <label for="password">Password:</label>
+                        <input type="text" name="password" id="password">
+                    </div>
+                    <div>
+                        <input type="submit" id="submitBtn">
+                    </div>
+                </form>
+                <h6><i><%=savedDoctor%></i></h6>
+                <hr>
+            </div>
+        </div>
+
+        <a href="/">Return Home</a>
+
+    </div>
+    
+</body>
+</html>

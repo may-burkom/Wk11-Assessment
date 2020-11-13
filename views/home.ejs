@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Wk 11 Assessment</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Welcome to Saint Joseph's Hospital.</h1>
+        <hr>
+
+        <div>
+            <p>Sign-up below to record your data.</p>
+        </div>
+
+        <div>
+            <h5><button><a href="/doctor">DOCTOR</a></button> <button><a href="/patient">PATIENT</a></button></h5> 
+        </div>
+        <hr>
+
+        <div>
+            <h4>Patients:</h4>
+            <% patientList.forEach(function(patient){ %>
+            <ol>
+                <li><b><%= patient.name %></b><button id="<% patient._id %>">DELETE</button></li>
+            </ol>
+            <% }) %>
+        </div>
+
+        <div>
+            <h4>Doctors:</h4>
+            <% doctorList.forEach(function(doctor){ %>
+                <ol>
+                    <li><b><%= doctor.name %></b> <button id="<% doctor._id %>">DELETE</button></li>
+                </ol>
+                <% }) %>
+        </div>
+
+    </div>
+</body>
+</html>

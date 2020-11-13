@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Wk 11 Assessment</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Welcome to Saint Joseph's Hospital.</h1>
+        <hr>
+        <div>
+            <p>Fill in the form below. From the list below please type enter in your Primary Care Physician.</p>
+        </div>
+        <hr>
+        <div id="doctorList">
+            <h3>List of Doctors in SJH:</h3>
+            <% docArr.forEach((obj)=>{ %>
+            <ul>
+                <li> 
+                    <%= obj.name %>
+                </li>
+            </ul>
+            <% }) %>
+        </div>
+        <hr>
+        <div>
+            <h4>Patient Sign-up:</h4> <hr>
+            <div>
+                <form action="/patient-save" method="POST">
+                    <div>
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" id="name">
+                    </div>
+                    <div>
+                        <label for="doctor">Primary Care Physician:</label>
+                        <input type="text" name="doctor" id="doctor">
+                    </div>
+                    <div>
+                        <label for="password">Password:</label>
+                        <input type="text" name="password" id="password">
+                    </div>
+                    <div>
+                        <input type="submit" id="submitBtn">
+                    </div>
+                </form>
+                <%=patient%>
+                <hr>
+            </div>
+        </div>
+
+        <a href="/">Return Home</a>
+    </div>
+
+</body>
+</html>
